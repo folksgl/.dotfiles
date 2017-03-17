@@ -85,9 +85,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias db='psql -h db.cs.jmu.edu'
-alias pull_dealers='git pull git@github.com:cs474/dealers.git'
-alias push_dealers='git push git@github.com:cs474/dealers.git'
 alias bashrc='vi ~/.bashrc'
 alias vimrc='vi ~/.vimrc'
 alias c=clear
