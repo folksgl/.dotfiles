@@ -90,11 +90,7 @@ alias pull_dealers='git pull git@github.com:cs474/dealers.git'
 alias push_dealers='git push git@github.com:cs474/dealers.git'
 alias bashrc='vi ~/.bashrc'
 alias vimrc='vi ~/.vimrc'
-alias build='./build.sh'
-alias clean='./clean.sh'
-alias prun='pin2 -t'
 alias c=clear
-alias chapel='source /shared/bin/chapel_setup.sh'lias tmuxconf='vi ~/.tmux.conf'
 
 
 # Alias definitions.
@@ -104,6 +100,10 @@ alias chapel='source /shared/bin/chapel_setup.sh'lias tmuxconf='vi ~/.tmux.conf'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -f ~/.local_bashrc ]; then
+    . ~/.local_bashrc
 fi
 
 # enable programmable completion features (you don't need to enable
