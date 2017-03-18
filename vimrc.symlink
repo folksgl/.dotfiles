@@ -13,5 +13,8 @@ colorscheme ron
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'yggdroot/indentline'
 
 call plug#end()
