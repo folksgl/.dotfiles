@@ -89,6 +89,7 @@ alias bashrc='vi ~/.bashrc'
 alias vimrc='vi ~/.vimrc'
 alias c=clear
 alias vi='vim'
+alias greph='history | grep'
 
 # Include aliases and local_bashrc if they exist
 if [ -f ~/.bash_aliases ]; then

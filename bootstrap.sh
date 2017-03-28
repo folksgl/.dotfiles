@@ -1,4 +1,4 @@
-#bootstrap installs things.
+# bootstrap.sh installs things and does some general setup to get us ready to go.
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
