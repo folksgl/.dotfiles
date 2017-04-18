@@ -135,8 +135,18 @@ install_dotfiles () {
   done
 }
 
+setup_vim () {
+  info 'customizing vim'
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  vim +PlugInstall +qall
+
+}
+
 setup_gitconfig
 install_dotfiles
+setup_vim
 
 echo ''
 echo '  All installed!'
