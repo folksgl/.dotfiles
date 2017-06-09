@@ -86,6 +86,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias bashrc='vi ~/.bashrc'
+alias localbashrc='vi ~/.local_bashrc'
 alias vimrc='vi ~/.vimrc'
 alias c=clear
 alias vi='vim'
