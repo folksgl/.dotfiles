@@ -137,6 +137,9 @@ install_dotfiles () {
 
 setup_vim () {
   info 'customizing vim'
+
+  curl -fLo ~/.vim/colors/spring-night.vim --create-dirs \
+      https://github.com/rhysd/vim-color-spring-night/blob/master/colors/spring-night.vim
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
