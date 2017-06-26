@@ -140,6 +140,14 @@ setup_vim () {
 
   curl -fLo ~/.vim/colors/spring-night.vim --create-dirs \
       https://github.com/rhysd/vim-color-spring-night/blob/master/colors/spring-night.vim
+  CUR_DIR=$PWD
+  COLORS_DIR=~/.vim/colors/spring-night.vim
+  if [ -d "$COLORS_DIR" ]
+  then
+      cd $COLORS_DIR
+      vim +%s/\<has_bg ? ('ctermbg=' . a:bg[1]) : ''\>/''/g
+  fi
+
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

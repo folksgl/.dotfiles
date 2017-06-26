@@ -1,15 +1,19 @@
+" Tabbing and number setup
 set number
 set tabstop=2
 set shiftwidth=4
 set expandtab
 set autoindent
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+
+" Theme and color setup
 set term=screen-256color
 colorscheme spring-night
 
+" Highlight lines that go over 80 characters long
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
-" Vim-Plug 
+" Vim-Plug and plugins 
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
@@ -18,3 +22,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'yggdroot/indentline'
 
 call plug#end()
+
+" Key bindings
+nmap <CR> o<Esc>
+
