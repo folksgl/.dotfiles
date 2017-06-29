@@ -5,6 +5,9 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
+" Paste between multiple instances
+set clipboard=unnamed
+
 " Theme and color setup
 set term=screen-256color
 colorscheme spring-night
@@ -13,7 +16,7 @@ colorscheme spring-night
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-" Vim-Plug and plugins 
+" Vim-Plug and plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
@@ -26,4 +29,19 @@ call plug#end()
 " Key bindings
 nmap <CR> o<Esc>
 imap jj <Esc>
+
+" Set up persistent undo/redo
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
+
+" Remove trailing whitespace with f5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
