@@ -1,7 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -85,6 +81,8 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lx='ls -lXB'
+alias lt='ls -ltr'
 alias bashrc='vi ~/.bashrc'
 alias localbashrc='vi ~/.local_bashrc'
 alias vimrc='vi ~/.vimrc'
