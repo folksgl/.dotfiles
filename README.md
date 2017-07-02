@@ -1,4 +1,4 @@
-# Garrett Folks' <img src="dotfiles-logo.png" alt="dotfiles logo" width="400">
+# Garrett Folks' <img src="dotfiles-logo.png" alt="dotfiles logo" width="200">
 
 This is a collection of dotfiles and scripts I use for customizing my terminal
 environment, where I spend most of my time when working. The files here
