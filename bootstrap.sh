@@ -138,15 +138,16 @@ install_dotfiles () {
 setup_vim () {
   info 'customizing vim'
 
-  curl -fLo ~/.vim/colors/spring-night.vim --create-dirs \
-      https://github.com/rhysd/vim-color-spring-night/blob/master/colors/spring-night.vim
   CUR_DIR=$PWD
-  COLORS_DIR=~/.vim/colors/spring-night.vim
+  curl -fLo ~/.vim/colors/spring-night.vim --create-dirs \
+      https://raw.githubusercontent.com/rhysd/vim-color-spring-night/master/colors/spring-night.vim
+  COLORS_DIR=~/.vim/colors/
   if [ -d "$COLORS_DIR" ]
   then
       cd $COLORS_DIR
-      vim +%s/\<has_bg ? ('ctermbg=' . a:bg[1]) : ''\>/''/g
+      sed -i "64c\ \ \ \ let ctermbg = ''" ~/.vim/colors/spring-night.vim
   fi
+  cd $CUR_DIR
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
