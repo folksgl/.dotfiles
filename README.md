@@ -1,4 +1,4 @@
-# Garrett Folks' Dotfiles
+# Garrett Folks' <img src="dotfiles-logo.png" alt="dotfiles logo" width="400">
 
 This is a collection of dotfiles and scripts I use for customizing my terminal
 environment, where I spend most of my time when working. The files here
@@ -26,4 +26,9 @@ bootstrap.sh.
 $ git clone https://github.com/folksgl/.dotfiles.git
 $ ./.dotfiles/bootstrap.sh
 ```
+
+## Note
+
+Some of the files here are taken or modified from other users and as such,
+everything here is for use freely under the [MIT License](LICENSE)
 
