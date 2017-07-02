@@ -8,6 +8,7 @@ are currently used for customizing the following:
 - Vim
 - Tmux
 - Git
+- bin/
 
 The repository should be cloned into your home directory and will already be
 hidden since the repository name includes the "." prefix. Your "real" dotfiles 
