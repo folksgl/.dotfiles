@@ -11,6 +11,12 @@ set clipboard=unnamed
 " Theme and color setup
 set term=screen-256color
 colorscheme spring-night
+highlight LineNr ctermfg=grey ctermbg=238
+let g:airline_theme='bubblegum'
+
+" Case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
 
 " Highlight lines that go over 80 characters long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -23,6 +29,8 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'yggdroot/indentline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
