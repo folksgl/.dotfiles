@@ -140,7 +140,7 @@ setup_vim () {
 
   CUR_DIR=$PWD
   curl -fLo ~/.vim/colors/spring-night.vim --create-dirs \
-      https://raw.githubusercontent.com/rhysd/vim-color-spring-night/master/colors/spring-night.vim
+      https://raw.githubusercontent.com/rhysd/vim-color-spring-night/master/colors/spring-night.vim &> /dev/null
   COLORS_DIR=~/.vim/colors/
   if [ -d "$COLORS_DIR" ]
   then
@@ -150,10 +150,11 @@ setup_vim () {
   cd $CUR_DIR
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
 
   vim +PlugInstall +qall
 
+  success 'vim customization complete'
 }
 
 setup_gitconfig
