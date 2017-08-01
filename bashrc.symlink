@@ -92,6 +92,8 @@ alias c=clear
 alias vi='vim'
 alias greph='history | grep'
 alias diff='diff -u'
+alias mcm='make clean && make'
+alias gits='git status'
 
 # Include aliases and local_bashrc if they exist
 if [ -f ~/.bash_aliases ]; then
