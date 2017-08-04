@@ -139,14 +139,15 @@ setup_vim () {
   info 'customizing vim'
 
   CUR_DIR=$PWD
-  curl -fLo ~/.vim/colors/spring-night.vim --create-dirs \
-      https://raw.githubusercontent.com/rhysd/vim-color-spring-night/master/colors/spring-night.vim &> /dev/null
+
   COLORS_DIR=~/.vim/colors/
-  if [ -d "$COLORS_DIR" ]
+  THEME=~/.dotfiles/vim_themes/spring-night.vim
+
+  if [ ! -d "$COLORS_DIR" ]
   then
-      cd $COLORS_DIR
-      sed -i "64c\ \ \ \ let ctermbg = ''" ~/.vim/colors/spring-night.vim
+      mkdir -p $COLORS_DIR
   fi
+  cp $THEME $COLORS_DIR
   cd $CUR_DIR
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
