@@ -153,7 +153,7 @@ setup_vim () {
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
 
-  vim +PlugInstall +qall
+  vim +PlugInstall +PlugUpdate +qall
 
   success 'vim customization complete'
 }
