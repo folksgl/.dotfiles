@@ -21,7 +21,7 @@ set hlsearch
 set incsearch
 
 " Other handy vim settings
-set scrolloff
+set scrolloff=2
 
 " Highlight lines that go over 80 characters long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -37,9 +37,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'sickill/vim-pasta'
-Plug 'sickill/vim-pasta'
 
 call plug#end()
+
+" Plugin Settings
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " Key bindings
 nmap <CR> o<Esc>
