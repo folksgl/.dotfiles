@@ -38,7 +38,7 @@ call plug#end()
 " Key bindings
 nmap <CR> o<Esc>
 imap jj <Esc>
-nmap <F10> :make
+map <F6> :make<CR>
 " Remove trailing whitespace with f5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
