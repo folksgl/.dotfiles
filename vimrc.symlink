@@ -25,7 +25,7 @@ match OverLength /\%81v.\+/
 " Vim-Plug and plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'yggdroot/indentline'
@@ -37,6 +37,9 @@ call plug#end()
 " Key bindings
 nmap <CR> o<Esc>
 imap jj <Esc>
+nmap <F10> :make
+" Remove trailing whitespace with f5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Set up persistent undo/redo
 let vimDir = '$HOME/.vim'
@@ -49,7 +52,4 @@ if has('persistent_undo')
     let &undodir = myUndoDir
     set undofile
 endif
-
-" Remove trailing whitespace with f5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
