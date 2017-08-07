@@ -14,10 +14,14 @@ colorscheme spring-night
 highlight LineNr ctermfg=grey ctermbg=238
 let g:airline_theme='bubblegum'
 
-" Case insensitive search, except when using capital letters
+" Search settings
 set ignorecase
 set smartcase
 set hlsearch
+set incsearch
+
+" Other handy vim settings
+set scrolloff
 
 " Highlight lines that go over 80 characters long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -28,10 +32,12 @@ call plug#begin('~/.vim/plugged')
 
 " Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'yggdroot/indentline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'sickill/vim-pasta'
+Plug 'sickill/vim-pasta'
 
 call plug#end()
 
