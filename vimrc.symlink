@@ -17,6 +17,7 @@ let g:airline_theme='bubblegum'
 " Case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
+set hlsearch
 
 " Highlight lines that go over 80 characters long
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929

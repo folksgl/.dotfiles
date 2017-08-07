@@ -94,8 +94,11 @@ alias c=clear
 alias vi='vim'
 alias greph='history | grep'
 alias diff='diff -u'
-alias mcm='make clean && make'
 alias gits='git status'
+
+alias mc='make clean'
+alias mcm='make clean && make'
+alias mcmr='make clean && make && make run'
 
 # Include aliases and local_bashrc if they exist
 if [ -f ~/.bash_aliases ]; then
@@ -120,6 +123,3 @@ export PATH="~/.dotfiles/bin:$PATH"
 #export PS1="[\[$(tput sgr0)\]\[\033[38;5;6m\]\@\[$(tput sgr0)\]\[\033[38;5;15m\]] \[$(tput sgr0)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;84m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;14m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$\[$(tput sgr0)\]"
 
 # change ls colors
-#export LSCOLORS=di=[\033[38;5;11m\]
-#:ln=36:so=32:pi=33:ex=31
-
