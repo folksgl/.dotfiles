@@ -37,14 +37,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'sickill/vim-pasta'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
 " Plugin Settings
+"    rainbow_parentheses settings
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+"    tmuxline settings
+let g:airline#extensions#tmuxline#enabled = 1
 
 " Key bindings
 nmap <CR> o<Esc>
