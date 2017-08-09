@@ -95,6 +95,7 @@ alias vi='vim'
 alias greph='history | grep'
 alias diff='diff -u'
 alias gits='git status'
+alias gp='git pull'
 
 alias mc='make clean'
 alias mcm='make clean && make'
