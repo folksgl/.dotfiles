@@ -44,13 +44,14 @@ call plug#end()
 
 " Plugin Settings
 "    rainbow_parentheses settings
-au VimEnter * RainbowParenthesesToggle
+"au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "    tmuxline settings
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " Key bindings
 nmap <CR> o<Esc>
