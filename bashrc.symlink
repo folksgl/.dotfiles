@@ -101,6 +101,8 @@ alias mc='make clean'
 alias mcm='make clean && make'
 alias mcmr='make clean && make && make run'
 
+alias decaf='java -jar ~/.dotfiles/bin/decaf-1.0.jar -i'
+
 # Include aliases and local_bashrc if they exist
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
