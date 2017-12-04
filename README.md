@@ -23,8 +23,8 @@ bootstrap.sh.
 
 ## Installation
 ```sh
-$ git clone https://github.com/folksgl/.dotfiles.git
-$ ./.dotfiles/bootstrap.sh
+git clone https://github.com/folksgl/.dotfiles.git
+./.dotfiles/bootstrap.sh
 ```
 
 ## Note
