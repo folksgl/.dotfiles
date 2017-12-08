@@ -58,9 +58,8 @@ let g:airline_powerline_fonts = 1
 nmap <CR> o<Esc>
 imap jj <Esc>
 map <F6> :make<CR>
-" Remove trailing whitespace with f5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-nnoremap <F12> magg=G'a
+" Reindent entire file and remove trailing whitespace with F12
+nnoremap <F12> magg=G:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>'a
 
 " Set up persistent undo/redo
 let vimDir = '$HOME/.vim'
