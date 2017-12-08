@@ -20,6 +20,8 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
+hi search cterm=NONE ctermfg=black ctermbg=LightBlue
+hi incsearch cterm=NONE ctermfg=black ctermbg=LightBlue
 
 " Other handy vim settings
 set scrolloff=2
