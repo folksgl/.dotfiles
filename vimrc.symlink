@@ -11,6 +11,7 @@ set clipboard=unnamed
 " Theme and color setup
 set term=screen-256color
 colorscheme spring-night
+set bg=dark
 highlight LineNr ctermfg=grey ctermbg=238
 let g:airline_theme='bubblegum'
 
@@ -59,6 +60,7 @@ imap jj <Esc>
 map <F6> :make<CR>
 " Remove trailing whitespace with f5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <F12> magg=G'a
 
 " Set up persistent undo/redo
 let vimDir = '$HOME/.vim'
