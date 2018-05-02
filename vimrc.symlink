@@ -27,8 +27,8 @@ hi incsearch cterm=NONE ctermfg=black ctermbg=LightBlue
 set scrolloff=2
 
 " Highlight lines that go over 80 characters long
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
 
 " Vim-Plug and plugins
 call plug#begin('~/.vim/plugged')
