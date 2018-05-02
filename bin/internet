@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# make sure we're connected to the interwebz
+ping -w 1 -c 1 -q www.google.com &>/dev/null
+
+# if ping failed, try to reset internet connection
+if [ ! $? -eq 0 ]; then
+    ping -w 1 -c 1 -q www.google.com &>/dev/null
+
+    # Attempt internet reset 10 times
+    for i in {1..10}
+    do
+        ifdown eth0 &>/dev/null
+        timeout 6 ifup eth0 &>/dev/null
+        ping -w 1 -c 1 -q www.google.com &>/dev/null
+        # exit successfully if we connected
+        if [ $? -eq 0 ]; then
+            exit 0
+        fi
+    done
+
+    # exit unsuccessfully if 10 resets couldn't connect
+    exit 1
+fi
