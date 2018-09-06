@@ -158,6 +158,22 @@ setup_vim () {
   success 'vim customization complete'
 }
 
+setup_zsh() {
+
+    sudo apt-get install zsh && sudo chsh -s /bin/zsh $(whoami)
+    sudo apt-get install fontconfig
+
+    #git clone https://github.com/powerline/fonts.git --depth=1
+    #cd fonts
+    #./install.sh
+    #cd ..
+    #rm -rf fonts
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc
+    source ~/.zshrc
+
+}
+
 setup_gitconfig
 install_dotfiles
 setup_vim
