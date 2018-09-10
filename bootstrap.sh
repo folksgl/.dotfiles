@@ -133,7 +133,7 @@ install_dotfiles () {
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
-  sudo apt install x11-xkb-utils -y
+  sudo apt install x11-xkb-utils -y &> /dev/null
 }
 
 setup_vim () {
@@ -161,8 +161,8 @@ setup_vim () {
 
 setup_zsh() {
 
-    sudo apt-get install zsh -y && sudo chsh -s /bin/zsh $(whoami)
-    sudo apt-get install fontconfig -y
+    sudo apt-get install zsh -y &> /dev/null 
+    sudo apt-get install fontconfig -y &> /dev/null
 
     #git clone https://github.com/powerline/fonts.git --depth=1
     #cd fonts
@@ -170,15 +170,15 @@ setup_zsh() {
     #cd ..
     #rm -rf fonts
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc
     sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
-    source ~/.zshrc
+    #source ~/.zshrc
+    sudo chsh -s /bin/zsh $(whoami)
 
 }
 
+setup_vim
 setup_gitconfig
 install_dotfiles
-setup_vim
 setup_zsh
 
 echo ''
