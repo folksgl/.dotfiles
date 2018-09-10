@@ -3,9 +3,19 @@
 # Print public SSH key to clipboard. Generate it if necessary
 
 file="$HOME/.ssh/id_rsa.pub"
+dir="$HOME/.ssh/"
+
+
+# Create key if needed.
 if [ ! -f "$file" ]; then
 
+    # Create directory if needed.
+    if [ ! -d "$dir" ]; then
+        mkdir "$dir"
+    fi
+
     ssh-keygen -t rsa -b 4096
+
 fi
 
 cat "$file"
