@@ -184,6 +184,7 @@ setup_zsh() {
     rm -rf fonts
 
     sh -c ~/.dotfiles/install.sh
+    echo $PASSWD | chsh -s $(grep /zsh$ /etc/shells | tail -1) &> /dev/null
     #sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
 }
 
