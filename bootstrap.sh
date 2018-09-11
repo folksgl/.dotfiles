@@ -137,7 +137,7 @@ install_dotfiles () {
 }
 
 setup_vim () {
-  info 'customizing vim'
+  info 'Customizing Vim'
 
   CUR_DIR=$PWD
 
@@ -156,7 +156,7 @@ setup_vim () {
 
   vim +PlugInstall +PlugUpdate +qall
 
-  success 'vim customization complete'
+  success 'Vim Customization'
 }
 
 check_permission() {
@@ -166,14 +166,23 @@ check_permission() {
     echo "There may be some tools to install, and files to edit"
     echo "that will need higher privilage access."
     echo ""
+    fail 'Insufficient Permission'
     exit
   fi
+  success 'Permissions Check'
 }
 
 setup_tools() {
-  echo "Setting up tools..."
+  # Curl
   if [ -z $(command -v curl) ]; then
-    apt-get install curl -y
+    apt-get install curl -y &> /dev/null
+    success 'Curl Installed'
+  fi
+
+  # VIM
+  if [ -z $(command -v vim) ]; then
+    apt-get install vim -y &> /dev/null
+    success 'Vim Installed'
   fi
 }
 
