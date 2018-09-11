@@ -159,13 +159,13 @@ setup_vim () {
 setup_tools() {
   # Curl
   if [ -z $(command -v curl) ]; then
-    echo $PASSWD | sudo --stdin -n apt-get install curl -y &> /dev/null
+    sudo apt-get install curl -y &> /dev/null
     success 'Curl Installed'
   fi
 
   # Vim
   if [ -z $(command -v vim) ]; then
-    echo $PASSWD | sudo --stdin -n apt-get install vim -y &> /dev/null
+    sudo apt-get install vim -y &> /dev/null
     success 'Vim Installed'
   fi
 }
@@ -173,8 +173,8 @@ setup_tools() {
 setup_zsh() {
 
     info 'Installing zsh'
-    echo $PASSWD | sudo --stdin -n apt-get install zsh -y &> /dev/null 
-    echo $PASSWD | sudo --stdin -n apt-get install fontconfig -y &> /dev/null
+    sudo apt-get install zsh -y &> /dev/null 
+    sudo apt-get install fontconfig -y &> /dev/null
 
     cd $HOME
     git clone https://github.com/powerline/fonts.git --depth=1 &> /dev/null
@@ -183,15 +183,13 @@ setup_zsh() {
     cd ..
     rm -rf fonts
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &> /dev/null
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     #sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
-    echo $PASSWD | sudo --stdin -n chsh -s /bin/zsh $USER
-
 }
 
 USER=$(whoami)
 read -r -s -p "[sudo] password for $USER: " PASSWD
-echo ""
+echo $PASSWD | sudo --stdin echo ""
 
 setup_tools
 setup_gitconfig
