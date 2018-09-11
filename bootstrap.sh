@@ -159,6 +159,24 @@ setup_vim () {
   success 'vim customization complete'
 }
 
+check_permission() {
+  USER=$(whoami)
+  if [ ! $USER = "root" ]; then
+    echo "Please execute bootstrap script as root." 
+    echo "There may be some tools to install, and files to edit"
+    echo "that will need higher privilage access."
+    echo ""
+    exit
+  fi
+}
+
+setup_tools() {
+  echo "Setting up tools..."
+  if [ -z $(command -v curl) ]; then
+    apt-get install curl -y
+  fi
+}
+
 setup_zsh() {
 
     sudo apt-get install zsh -y &> /dev/null 
@@ -176,6 +194,8 @@ setup_zsh() {
 
 }
 
+check_permission
+setup_tools
 setup_vim
 setup_gitconfig
 install_dotfiles
