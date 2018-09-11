@@ -156,29 +156,16 @@ setup_vim () {
   success 'Vim Customization'
 }
 
-check_permission() {
-  USER=$(whoami)
-  if [ ! $USER = "root" ]; then
-    echo "Please execute bootstrap script as root." 
-    echo "There may be some tools to install, and files to edit"
-    echo "that will need higher privilage access."
-    echo ""
-    fail 'Insufficient Permission'
-    exit
-  fi
-  success 'Permissions Check'
-}
-
 setup_tools() {
   # Curl
   if [ -z $(command -v curl) ]; then
-    apt-get install curl -y &> /dev/null
+    echo $PASSWD | sudo --stdin -n apt-get install curl -y &> /dev/null
     success 'Curl Installed'
   fi
 
   # Vim
   if [ -z $(command -v vim) ]; then
-    apt-get install vim -y &> /dev/null
+    echo $PASSWD | sudo --stdin -n apt-get install vim -y &> /dev/null
     success 'Vim Installed'
   fi
 }
@@ -186,8 +173,8 @@ setup_tools() {
 setup_zsh() {
 
     info 'Installing zsh'
-    sudo apt-get install zsh -y &> /dev/null 
-    sudo apt-get install fontconfig -y &> /dev/null
+    echo $PASSWD | sudo --stdin -n apt-get install zsh -y &> /dev/null 
+    echo $PASSWD | sudo --stdin -n apt-get install fontconfig -y &> /dev/null
 
     cd $HOME
     git clone https://github.com/powerline/fonts.git --depth=1 &> /dev/null
@@ -199,11 +186,14 @@ setup_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &> /dev/null
     sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
     #source ~/.zshrc
-    sudo chsh -s /bin/zsh $(whoami)
+    echo $PASSWD | sudo --stdin -n chsh -s /bin/zsh $USER
 
 }
 
-check_permission
+USER=$(whoami)
+read -r -s -p "[sudo] password for $USER: " PASSWD
+echo ""
+
 setup_tools
 setup_gitconfig
 install_dotfiles
