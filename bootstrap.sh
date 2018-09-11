@@ -140,21 +140,28 @@ setup_vim () {
   info 'Customizing Vim'
 
   CUR_DIR=$PWD
+  echo "cur dir is $CUR_DIR"
 
   COLORS_DIR=~/.vim/colors/
+  echo "colors dir is $COLORS_DIR"
   THEME=~/.dotfiles/vim_themes/spring-night.vim
 
   if [ ! -d "$COLORS_DIR" ]
   then
+      echo "making colors dir"
       mkdir -p $COLORS_DIR
   fi
+  echo "copying theme into colors directory"
   cp $THEME $COLORS_DIR
   cd $CUR_DIR
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
-
+  echo "installed plug"
+  
   vim +PlugInstall +PlugUpdate +qall
+
+  echo "should have installed plugins"
 
   success 'Vim Customization'
 }
@@ -179,7 +186,7 @@ setup_tools() {
     success 'Curl Installed'
   fi
 
-  # VIM
+  # Vim
   if [ -z $(command -v vim) ]; then
     apt-get install vim -y &> /dev/null
     success 'Vim Installed'
