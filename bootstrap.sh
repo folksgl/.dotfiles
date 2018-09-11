@@ -183,14 +183,18 @@ setup_zsh() {
     cd ..
     rm -rf fonts
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c ~/.dotfiles/install.sh
     #sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
 }
 
 USER=$(whoami)
 read -r -s -p "[sudo] password for $USER: " PASSWD
-echo $PASSWD | sudo --stdin echo ""
+echo $PASSWD | sudo --stdin --prompt=" " echo "" || {
+    fail 'Incorrect Password' 
+    exit
+}
 
+success 'Installation Started'
 setup_tools
 setup_gitconfig
 install_dotfiles
