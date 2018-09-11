@@ -64,6 +64,10 @@ main() {
     exit 1
   }
 
+  sed "/^export ZSH=/ c\\
+  export ZSH=\"$ZSH\"
+  " ~/.zshrc > ~/.zshrc-omztemp
+  mv -f ~/.zshrc-omztemp ~/.zshrc
 
   # If this user's login shell is not already "zsh", attempt to switch.
   TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
