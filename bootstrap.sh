@@ -183,8 +183,7 @@ setup_zsh() {
     cd ..
     rm -rf fonts
 
-    sh -c ~/.dotfiles/install.sh
-    echo $PASSWD | chsh -s $(grep /zsh$ /etc/shells | tail -1) &> /dev/null
+    ~/.dotfiles/install.sh
     #sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
 }
 

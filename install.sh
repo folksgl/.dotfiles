@@ -46,7 +46,7 @@ main() {
   # precedence over umasks except for filesystems mounted with option "noacl".
   umask g-w,o-w
 
-  printf "${BLUE}Cloning Oh My Zsh...${NORMAL}\n"
+  #printf "${BLUE}Cloning Oh My Zsh...${NORMAL}\n"
   command -v git >/dev/null 2>&1 || {
     echo "Error: git is not installed"
     exit 1
@@ -65,13 +65,13 @@ main() {
   }
 
 
-  printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
-  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
-    printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
+  #printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
+  #if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
+    #printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
     #mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
-  fi
+  #fi
 
-  printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
+  #printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
   #cp "$ZSH"/templates/zshrc.zsh-template ~/.zshrc
   sed "/^export ZSH=/ c\\
   export ZSH=\"$ZSH\"
@@ -83,7 +83,8 @@ main() {
   if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
     # If this platform provides a "chsh" command (not Cygwin), do it, man!
     if hash chsh >/dev/null 2>&1; then
-      printf "${BLUE}Time to change your default shell to zsh!${NORMAL}\n"
+      #printf "${BLUE}Time to change your default shell to zsh!${NORMAL}\n"
+      chsh -s $(grep /zsh$ /etc/shells | tail -1)
     # Else, suggest the user do so manually.
     else
       printf "I can't change your shell automatically because this system does not have chsh.\n"
@@ -92,22 +93,22 @@ main() {
   fi
 
   printf "${GREEN}"
-  echo '         __                                     __   '
-  echo '  ____  / /_     ____ ___  __  __   ____  _____/ /_  '
-  echo ' / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ '
-  echo '/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / '
-  echo '\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  '
-  echo '                        /____/                       ....is now installed!'
-  echo ''
-  echo ''
-  echo 'Please look over the ~/.zshrc file to select plugins, themes, and options.'
-  echo ''
-  echo 'p.s. Follow us at https://twitter.com/ohmyzsh.'
-  echo ''
-  echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
-  echo ''
+  #echo '         __                                     __   '
+  #echo '  ____  / /_     ____ ___  __  __   ____  _____/ /_  '
+  #echo ' / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ '
+  #echo '/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / '
+  #echo '\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  '
+  #echo '                        /____/                       ....is now installed!'
+  #echo ''
+  #echo ''
+  #echo 'Please look over the ~/.zshrc file to select plugins, themes, and options.'
+  #echo ''
+  #echo 'p.s. Follow us at https://twitter.com/ohmyzsh.'
+  #echo ''
+  #echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
+  #echo ''
   printf "${NORMAL}"
-  #env zsh -l
+  env zsh -l
 }
 
 main
