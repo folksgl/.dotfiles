@@ -193,7 +193,7 @@ setup_zsh() {
     #./install.sh
     #cd ..
     #rm -rf fonts
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &> /dev/null
     sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
     #source ~/.zshrc
     sudo chsh -s /bin/zsh $(whoami)
