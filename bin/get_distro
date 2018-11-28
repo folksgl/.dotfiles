@@ -1,0 +1,3 @@
+#!/bin/bash
+# Returns the name of the distribution on linux systems
+cat /etc/*-release | grep DISTRIB_ID | awk -F '=' '{print }'

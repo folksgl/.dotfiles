@@ -1,0 +1,3 @@
+#!/bin/bash
+# Takes in a single file and removes windows line endings from the file.
+sed -i 's/\r//g' $1
