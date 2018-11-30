@@ -1,0 +1,29 @@
+#!/bin/bash
+# Alias Definitions
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias lx='ls -lXB'
+alias lt='ls -ltr'
+
+alias bashrc='vi ~/.bashrc'
+alias zshrc='vi ~/.zshrc'
+alias localbashrc='vi ~/.local_bashrc'
+alias vimrc='vi ~/.vimrc'
+alias tconf='vi ~/.tmux.conf'
+alias bootstrap='vi ~/.dotfiles/bootstrap.sh'
+
+alias c=clear
+alias vi='vim'
+alias greph='history | grep'
+alias diff='diff -u'
+alias gits='git status'
+alias gitb='git branch --verbose'
+alias gp='git pull'
+
+alias mc='make clean'
+alias mcm='make clean && make'
+alias mcmr='make clean && make && make run'
+
+alias decaf='java -jar ~/.dotfiles/bin/decaf/decaf-1.0.jar -i'
+
