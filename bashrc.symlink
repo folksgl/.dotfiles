@@ -77,31 +77,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Alias Definitions
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias lx='ls -lXB'
-alias lt='ls -ltr'
-
-alias bashrc='vi ~/.bashrc'
-alias localbashrc='vi ~/.local_bashrc'
-alias vimrc='vi ~/.vimrc'
-alias tconf='vi ~/.tmux.conf'
-alias bootstrap='vi ~/.dotfiles/bootstrap.sh'
-
-alias c=clear
-alias vi='vim'
-alias greph='history | grep'
-alias diff='diff -u'
-alias gits='git status'
-alias gp='git pull'
-
-alias mc='make clean'
-alias mcm='make clean && make'
-alias mcmr='make clean && make && make run'
-
-alias decaf='java -jar ~/.dotfiles/bin/decaf/decaf-1.0.jar -i'
+# Add Aliases 
+source ~/.dotfiles/shell_aliases
 
 # Include aliases and local_bashrc if they exist
 if [ -f ~/.bash_aliases ]; then
