@@ -1,10 +1,12 @@
 #!/bin/bash
 # Alias Definitions
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias lx='ls -lXB'
-alias lt='ls -ltr'
+lsAlias=$(echo "$(which ls)" --color=auto)
+alias ls=$lsAlias
+alias la='ls -A --color=auto'
+alias ll='ls -alFh --color=auto'
+alias l='ls -CF --color=auto'
+alias lx='ls -lXB --color=auto'
+alias lt='ls -ltr --color=auto'
 
 alias bashrc='vi ~/.bashrc'
 alias zshrc='vi ~/.zshrc'
