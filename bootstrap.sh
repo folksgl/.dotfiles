@@ -3,6 +3,10 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
+# Exit immediately if a simple command exits with a non-zero status, unless
+# the command that fails is part of an until or while loop, part of an
+# if statement, part of a && or || list, or if the command's return status
+# is being inverted using !
 set -e
 
 echo ''
