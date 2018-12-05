@@ -1,3 +1,6 @@
 #!/bin/bash
 # Returns the name of the distribution on linux systems
-cat /etc/*-release | grep DISTRIB_ID | awk -F '=' '{print }'
+OS_NAME=$(cat /etc/*-release | grep -i "distrib_id" | awk -F '=' '{print $2}')
+OS_VERSION=$(cat /etc/*-release | grep -i "version=" | awk -F '=' '{print $2}')
+
+echo "$OS_NAME $OS_VERSION"
