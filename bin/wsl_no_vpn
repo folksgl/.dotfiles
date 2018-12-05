@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# The purpose of this script is to attempt to fix the issue of not having internet when
+# using bash as part of Windows Subsystem for Linux. This particular script will place
+# 192.168.1.1 at the top of your /etc/resolv.conf file (assuming your router is your DNS server)
+
+# backup existing resolv.conf and unlink
+cp /etc/resolv.conf /etc/resolv.conf.new
+unlink /etc/resolv.conf
+
+# Overwrite the previous resolv.conf
+mv /etc/resolv.conf.new /etc/resolv.conf
+
+# remove the first line of resolv.conf and manually add vpn dns server to top of file
+tail -n +2 /etc/resolv.conf > /etc/tmp_file.txt
+echo "nameserver 192.168.1.1" > /etc/tmp2_file.txt
+cat /etc/tmp2_file.txt > /etc/resolv.conf
+cat /etc/tmp_file.txt >> /etc/resolv.conf
+rm /etc/tmp_file.txt
+rm /etc/tmp2_file.txt
