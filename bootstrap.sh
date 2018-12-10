@@ -1,5 +1,6 @@
 # bootstrap.sh installs things and does some general setup to get us ready to go.
 
+# Change directory to the parent directory of the bootstrap script.
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
