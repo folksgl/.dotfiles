@@ -198,7 +198,7 @@ setup_zsh() {
     rm -rf fonts
     success 'Installed patched fonts'
 
-    ~/.dotfiles/install.sh
+    ~/.dotfiles/ohmyzsh-install.sh
     sed -i 's/prompt_segment blue/prompt_segment red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
     success 'Installed ohmyzsh'
 }
