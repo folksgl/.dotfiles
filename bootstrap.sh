@@ -1,3 +1,4 @@
+#!/bin/bash
 # bootstrap.sh installs things and does some general setup to get us ready to go.
 
 # Change directory to the parent directory of the bootstrap script.
@@ -173,6 +174,13 @@ setup_tools() {
     sudo apt-get install vim -y &> /dev/null
     success 'Vim Installed'
   fi
+
+  # Wget
+  if [ -z $(command -v wget) ]; then
+    sudo apt-get install wget -y &> /dev/null
+    success 'wget Installed'
+  fi
+
 }
 
 setup_zsh() {
@@ -181,6 +189,7 @@ setup_zsh() {
     sudo apt-get install zsh -y &> /dev/null 
     sudo apt-get install fontconfig -y &> /dev/null
 
+    info 'Installing patched fonts for zsh'
     cd $HOME
     git clone https://github.com/powerline/fonts.git --depth=1 &> /dev/null
     cd fonts
@@ -188,15 +197,9 @@ setup_zsh() {
     cd ..
     rm -rf fonts
 
+    info 'Installing ohmyzsh'
     ~/.dotfiles/install.sh
-    #sed -i 's/blue/red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
-}
-
-USER=$(whoami)
-read -r -s -p "[sudo] password for $USER: " PASSWD
-echo $PASSWD | sudo --stdin --prompt=" " echo "" || {
-    fail 'Incorrect Password' 
-    exit
+    sed -i 's/prompt_segment blue/prompt_segment red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
 }
 
 success 'Installation Started'
