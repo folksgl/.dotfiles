@@ -59,7 +59,7 @@ main() {
       exit 1
     fi
   fi
-  env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "$ZSH" &> /dev/null || {
+  env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "$ZSH" --quiet || {
     printf "Error: git clone of oh-my-zsh repo failed\n"
     exit 1
   }
@@ -83,7 +83,7 @@ main() {
   if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
     # If this platform provides a "chsh" command (not Cygwin), do it, man!
     if hash chsh >/dev/null 2>&1; then
-      #printf "${BLUE}Time to change your default shell to zsh!${NORMAL}\n"
+      printf "${BLUE}Time to change your default shell to zsh!${NORMAL}\n"
       chsh -s $(grep /zsh$ /etc/shells | tail -1)
     # Else, suggest the user do so manually.
     else
@@ -108,7 +108,8 @@ main() {
   #echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
   #echo ''
   printf "${NORMAL}"
-  env zsh -l
+  #env zsh -l
 }
 
 main
+exit
