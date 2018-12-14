@@ -212,3 +212,5 @@ setup_zsh
 
 echo ''
 echo '  All installed!'
+# Start zsh
+zsh
