@@ -11,16 +11,16 @@ are currently used for customizing the following:
 - bin/
 - Zsh
 
-The repository should be cloned into your home directory and will already be
-hidden since the repository name includes the "." prefix. Your "real" dotfiles 
-will be here. They will need to have a ".symlink" that the bootstrap.sh script
-will use to symlink dotfiles you wish to track in your home directory.
+The repository should be cloned into your home directory (copy/pasting the installation
+commands will do this for you). Dotfiles you wish to keep track of should be located in 
+the .dotfiles/dotfiles directory. They will need to have a ".symlink" extention that the 
+bootstrap.sh script will use to symlink dotfiles you wish to track in your home directory.
 
 The bootstrap.sh script will do all of the setup, so that installation on a new 
 machine is as streamlined as possible. It is set up to be modular, so adding a 
 new dotfile to your collection will only involve adding the .symlink file to the
-repository and doing any extra setup you need in an additional function call in
-bootstrap.sh.
+repository. If additional setup needs to be done, an additional function call in
+bootstrap.sh will need to be added.
 
 ## Installation
 ```sh
