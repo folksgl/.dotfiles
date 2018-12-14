@@ -1,4 +1,5 @@
 #!/bin/bash
+#!/bin/bash
 # bootstrap.sh installs things and does some general setup to get us ready to go.
 
 # Change directory to the parent directory of the bootstrap script.
@@ -9,8 +10,15 @@ DOTFILES_ROOT=$(pwd -P)
 # Exit immediately if a simple command exits with a non-zero status, unless
 # the command that fails is part of an until or while loop, part of an
 # if statement, part of a && or || list, or if the command's return status
-# is being inverted using !
+# is being inve
 set -e
+
+if [ $# -eq 1 ] && [ $1 = "-y" ]
+then
+    my_git_authorname="Garrett Folks"
+    my_git_email="folksgl@dukes.jmu.edu"
+fi
+
 
 echo ''
 
@@ -43,10 +51,20 @@ setup_gitconfig () {
       git_credential='osxkeychain'
     fi
 
-    user ' - What is your github author name?'
-    read -e git_authorname
-    user ' - What is your github author email?'
-    read -e git_authoremail
+    if [ ! -z "$my_git_authorname" ]
+    then 
+        git_authorname=$my_git_authorname
+    else
+        user ' - What is your github author name?'
+        read -e git_authorname
+    fi
+    if [ ! -z "$my_git_email" ]
+    then 
+        git_authoremail=$my_git_email
+    else
+        user ' - What is your github author email?'
+        read -e git_authoremail
+    fi
 
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" ~/.dotfiles/dotfiles/gitconfig.local.symlink.example > ~/.dotfiles/dotfiles/gitconfig.local.symlink
 
