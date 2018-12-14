@@ -186,21 +186,21 @@ setup_tools() {
 
 setup_zsh() {
 
-    info 'Installing zsh'
     sudo apt-get install zsh -y &> /dev/null 
-    sudo apt-get install fontconfig -y &> /dev/null
+    success 'Installed zsh'
 
-    info 'Installing patched fonts for zsh'
+    sudo apt-get install fontconfig -y &> /dev/null
     cd $HOME
     git clone https://github.com/powerline/fonts.git --depth=1 &> /dev/null
     cd fonts
     ./install.sh &> /dev/null
     cd ..
     rm -rf fonts
+    success 'Installed patched fonts'
 
-    info 'Installing ohmyzsh'
     ~/.dotfiles/install.sh
     sed -i 's/prompt_segment blue/prompt_segment red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
+    success 'Installed ohmyzsh'
 }
 
 success 'Installation Started'
