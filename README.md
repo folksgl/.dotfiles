@@ -46,5 +46,7 @@ directory even gets added to your PATH when the bootstrap.sh script is run. No a
 ## Note
 
 Some of the files here are taken or modified from other users and as such,
-everything here is for use freely under the [MIT License](LICENSE)
+everything here is for use freely under the [MIT License](LICENSE). Thanks to
+Zach Holman (@holman), as the original project is based off of his dotfiles project:
+https://github.com/holman/dotfiles
 
