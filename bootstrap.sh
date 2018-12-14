@@ -133,7 +133,7 @@ link_file () {
 install_dotfiles () {
   info 'installing dotfiles'
 
-  local overwrite_all=false backup_all=false skip_all=false
+  local overwrite_all=false backup_all=true skip_all=false
 
   for src in $(find -H "$DOTFILES_ROOT"/.dotfiles/dotfiles -name '*.symlink' -not -path '*.git*')
   do
