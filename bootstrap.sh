@@ -206,9 +206,9 @@ setup_zsh() {
 success 'Installation Started'
 setup_tools
 setup_gitconfig
-install_dotfiles
 setup_vim
 setup_zsh
+install_dotfiles
 
 echo ''
 echo '  All installed!'
