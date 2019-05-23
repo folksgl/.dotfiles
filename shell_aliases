@@ -23,6 +23,7 @@ alias gits='git status'
 alias gitb='git branch --verbose'
 alias gp='git pull'
 
+alias make='make -j16'
 alias mc='make clean'
 alias mcm='make clean && make'
 alias mcmr='make clean && make && make run'
