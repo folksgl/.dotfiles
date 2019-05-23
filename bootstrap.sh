@@ -178,6 +178,15 @@ setup_vim () {
   
   vim +PlugInstall +PlugUpdate +qall
 
+  COMPLETION_DIR=~/.vim/plugged
+
+  if [ -d "$COMPLETION_DIR" ]
+  then
+      cd COMPLETION_DIR
+      sudo apt install build-essential cmake python3-dev
+      python3 install.py --all
+  fi
+
   success 'Vim Customization'
 }
 

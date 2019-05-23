@@ -42,6 +42,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'sickill/vim-pasta'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
