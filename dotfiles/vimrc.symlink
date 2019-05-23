@@ -33,7 +33,7 @@ set scrolloff=2
 " Vim-Plug and plugins
 call plug#begin('~/.vim/plugged')
 
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'yggdroot/indentline'
 Plug 'vim-airline/vim-airline'
@@ -56,6 +56,23 @@ au Syntax * RainbowParenthesesLoadBraces
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_checkers = ['cppcheck']
+let g:syntastic_cppcheck_config_file = "compile_commands.json"
+
+
 
 " Key bindings
 nmap <CR> o<Esc>
