@@ -178,16 +178,19 @@ setup_vim () {
   
   vim +PlugInstall +PlugUpdate +qall
 
-  COMPLETION_DIR=~/.vim/plugged
+  success 'Vim Customization'
+}
+
+setup_vim_ide() {
+
+  COMPLETION_DIR=~/.vim/plugged/youcompleteme/
 
   if [ -d "$COMPLETION_DIR" ]
   then
-      cd COMPLETION_DIR
-      sudo apt install build-essential cmake python3-dev
+      cd $COMPLETION_DIR
+      sudo apt install build-essential cmake python3-dev mono-xbuild mono-devel cargo
       python3 install.py --all
   fi
-
-  success 'Vim Customization'
 }
 
 setup_tools() {
@@ -236,6 +239,7 @@ setup_gitconfig
 setup_vim
 setup_zsh
 install_dotfiles
+setup_vim_ide
 
 echo ''
 echo '  All installed!'
