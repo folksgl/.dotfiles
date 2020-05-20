@@ -23,10 +23,12 @@ alias gits='git status'
 alias gitb='git branch --verbose'
 alias gp='git pull'
 
-alias make='make -j16'
+num_procs=$(cat /proc/cpuinfo | grep processor | wc -l)
+alias make="make -j$num_procs"
 alias mc='make clean'
 alias mcm='make clean && make'
 alias mcmr='make clean && make && make run'
 
-alias decaf='java -jar ~/.dotfiles/bin/decaf/decaf-1.0.jar -i'
+alias python='python3'
+alias pip='pip3'
 
