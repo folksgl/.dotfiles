@@ -15,150 +15,151 @@ set -e
 
 if [ $# -eq 1 ] && [ $1 = "-y" ]
 then
-    my_git_authorname="Garrett Folks"
-    my_git_email="folksgl@dukes.jmu.edu"
+    my_git_authorname="Garrett F."
+    my_git_email="Gfolks14@gmail.com"
 fi
 
 
 echo ''
 
 info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
 user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+    printf "\r  [ \033[0;33m??\033[0m ] $1\n"
 }
 
 success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
-  exit
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    echo ''
+    exit
 }
 
 setup_gitconfig () {
   if ! [ -f ~/.dotfiles/gitconfig.local.symlink ]
   then
-    info 'setup gitconfig'
+      info 'setup gitconfig'
 
-    git_credential='cache'
-    if [ "$(uname -s)" == "Darwin" ]
-    then
-      git_credential='osxkeychain'
-    fi
+      git_credential='cache'
+      if [ "$(uname -s)" == "Darwin" ]
+      then
+          git_credential='osxkeychain'
+      fi
 
-    if [ ! -z "$my_git_authorname" ]
-    then 
-        git_authorname=$my_git_authorname
-    else
-        user ' - What is your github author name?'
-        read -e git_authorname
-    fi
-    if [ ! -z "$my_git_email" ]
-    then 
-        git_authoremail=$my_git_email
-    else
-        user ' - What is your github author email?'
-        read -e git_authoremail
-    fi
+      if [ ! -z "$my_git_authorname" ]
+      then 
+          git_authorname=$my_git_authorname
+      else
+          user ' - What is your github author name?'
+          read -e git_authorname
+      fi
+      if [ ! -z "$my_git_email" ]
+      then 
+          git_authoremail=$my_git_email
+      else
+          user ' - What is your github author email?'
+          read -e git_authoremail
+      fi
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" ~/.dotfiles/dotfiles/gitconfig.local.symlink.example > ~/.dotfiles/dotfiles/gitconfig.local.symlink
+      sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" ~/.dotfiles/dotfiles/gitconfig.local.symlink.example > ~/.dotfiles/dotfiles/gitconfig.local.symlink
 
-    success 'gitconfig'
+      success 'gitconfig'
   fi
 }
 
 
 link_file () {
-  local src=$1 dst=$2
+    info "Linking files"
 
-  local overwrite= backup= skip=
-  local action=
+    local src=$1 dst=$2
 
-  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
-  then
+    local overwrite= backup= skip=
+    local action=
 
-    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
+    if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
     then
 
-      local currentSrc="$(readlink $dst)"
+        if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
+        then
 
-      if [ "$currentSrc" == "$src" ]
-      then
+            local currentSrc="$(readlink $dst)"
 
-        skip=true;
+            if [ "$currentSrc" == "$src" ]
+            then
+                skip=true;
+            else
 
-      else
+                user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+                [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+                read -n 1 action
 
-        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
-        [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
+                case "$action" in
+                    o )
+                        overwrite=true;;
+                    O )
+                        overwrite_all=true;;
+                    b )
+                        backup=true;;
+                    B )
+                        backup_all=true;;
+                    s )
+                        skip=true;;
+                    S )
+                        skip_all=true;;
+                    * )
+                        ;;
+                esac
+            fi
+        fi
 
-        case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          b )
-            backup=true;;
-          B )
-            backup_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
-          * )
-            ;;
-        esac
+        overwrite=${overwrite:-$overwrite_all}
+        backup=${backup:-$backup_all}
+        skip=${skip:-$skip_all}
 
-      fi
+        if [ "$overwrite" == "true" ]
+        then
+            rm -rf "$dst"
+            success "removed $dst"
+        fi
 
+        if [ "$backup" == "true" ]
+        then
+            mv "$dst" "${dst}.backup"
+            success "moved $dst to ${dst}.backup"
+        fi
+
+        if [ "$skip" == "true" ]
+        then
+            success "skipped $src"
+        fi
     fi
 
-    overwrite=${overwrite:-$overwrite_all}
-    backup=${backup:-$backup_all}
-    skip=${skip:-$skip_all}
-
-    if [ "$overwrite" == "true" ]
+    if [ "$skip" != "true" ]  # "false" or empty
     then
-      rm -rf "$dst"
-      success "removed $dst"
+        ln -s "$1" "$2"
+        success "linked $1 to $2"
     fi
 
-    if [ "$backup" == "true" ]
-    then
-      mv "$dst" "${dst}.backup"
-      success "moved $dst to ${dst}.backup"
-    fi
-
-    if [ "$skip" == "true" ]
-    then
-      success "skipped $src"
-    fi
-  fi
-
-  if [ "$skip" != "true" ]  # "false" or empty
-  then
-    ln -s "$1" "$2"
-    success "linked $1 to $2"
-  fi
+    success "Files linked"
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  info 'Installing dotfiles'
 
   local overwrite_all=false backup_all=true skip_all=false
 
   for src in $(find -H "$DOTFILES_ROOT"/.dotfiles/dotfiles -name '*.symlink' -not -path '*.git*')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
-    link_file "$src" "$dst"
+      dst="$HOME/.$(basename "${src%.*}")"
+      link_file "$src" "$dst"
   done
-  sudo apt install x11-xkb-utils -y &> /dev/null
+
+  success "Dotfiles installed"
 }
 
 setup_vim () {
@@ -178,45 +179,90 @@ setup_vim () {
   
   vim +PlugInstall +PlugUpdate +qall
 
-  success 'Vim Customization'
+  success 'Vim customization complete'
 }
 
 setup_vim_ide() {
+    info "Setting up completion engines..."
 
-  COMPLETION_DIR=~/.vim/plugged/youcompleteme/
+    COMPLETION_DIR=~/.vim/plugged/youcompleteme/
 
-  if [ -d "$COMPLETION_DIR" ]
-  then
-      cd $COMPLETION_DIR
-      sudo apt install build-essential cmake python3-dev mono-xbuild mono-devel cargo
-      python3 install.py --all
-  fi
+    if [ -d "$COMPLETION_DIR" ]
+    then
+        cd $COMPLETION_DIR
+        success_file="success.txt"
+        if [ ! -f $success_file ]; then
+            python3 install.py --clangd-completer
+            if [ $? -eq 0 ]; then
+                echo "successful install" >> $success_file
+                success "Completion engines installed"
+            else
+                fail "Completion engine installer failed"
+            fi
+        else
+            success "Completion engines already installed"
+        fi
+    fi
+
 }
 
 setup_tools() {
   # Install tools
-  if [ -z $(command -v curl) ]; then
-    sudo apt install curl wget vim build-essential cppcheck pylint yamllint cmake unzip -y &> /dev/null
-    success 'Tools Installed'
-  fi
+  info "Installing packages..."
+  declare -a packages=("curl" "wget" "vim" "build-essential" "cppcheck" "pylint" "yamllint"
+                       "cmake" "unzip" "zsh" "fontconfig" "python3-dev" "x11-xkb-utils"
+                      )
+
+  for package in "${packages[@]}"
+  do
+      if ! dpkg --status $package > /dev/null 2>&1 ; then
+          sudo apt install $package
+          echo "$package installed"
+      else
+          success "Already installed $package"
+      fi
+  done
+
+  success "Packages installed"
 }
 
 setup_zsh() {
+    info "Customizing ZSH..."
 
-    sudo apt-get install zsh -y &> /dev/null 
-    success 'Installed zsh'
-
-    sudo apt-get install fontconfig -y &> /dev/null
     cd $HOME
-    git clone https://github.com/powerline/fonts.git --depth=1 &> /dev/null
-    cd fonts
-    ./install.sh &> /dev/null
-    cd ..
-    rm -rf fonts
-    success 'Installed patched fonts'
+    cd .dotfiles
 
-    ~/.dotfiles/ohmyzsh-install.sh
-    success 'Installed ohmyzsh'
+    success_file="font_success.txt"
+    if [ ! -f $success_file ]; then
+        git clone https://github.com/powerline/fonts.git --depth=1 &> /dev/null
+        cd fonts
+        ./install.sh &> /dev/null
+
+        if [ $? -eq 0 ]; then
+            cd $HOME/.dotfiles
+            echo "successful install" >> $success_file
+            success "Powerline fonts installed"
+        else
+            fail "Powerline fonts failed to install"
+        fi
+        cd $HOME/.dotfiles
+        rm -rf fonts
+    else
+        success "Powerline fonts already installed"
+    fi
+
+    success_file="ohmyzsh_success.txt"
+    if [ ! -f $success_file ]; then
+        ~/.dotfiles/ohmyzsh-install.sh
+        if [ $? -eq 0 ]; then
+            echo "successful install" >> $success_file
+            success "OhMyZsh installed"
+        else
+            fail "OhMyZsh failed to install"
+        fi
+    else
+        success "OhMyZsh already installed"
+    fi
 }
 
 success 'Installation Started'
