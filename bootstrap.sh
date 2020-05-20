@@ -194,24 +194,11 @@ setup_vim_ide() {
 }
 
 setup_tools() {
-  # Curl
+  # Install tools
   if [ -z $(command -v curl) ]; then
-    sudo apt-get install curl -y &> /dev/null
-    success 'Curl Installed'
+    sudo apt install curl wget vim build-essential cppcheck pylint yamllint cmake unzip -y &> /dev/null
+    success 'Tools Installed'
   fi
-
-  # Vim
-  if [ -z $(command -v vim) ]; then
-    sudo apt-get install vim -y &> /dev/null
-    success 'Vim Installed'
-  fi
-
-  # Wget
-  if [ -z $(command -v wget) ]; then
-    sudo apt-get install wget -y &> /dev/null
-    success 'wget Installed'
-  fi
-
 }
 
 setup_zsh() {
@@ -229,7 +216,6 @@ setup_zsh() {
     success 'Installed patched fonts'
 
     ~/.dotfiles/ohmyzsh-install.sh
-    sed -i 's/prompt_segment blue/prompt_segment red/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
     success 'Installed ohmyzsh'
 }
 
@@ -244,4 +230,5 @@ setup_vim_ide
 echo ''
 echo '  All installed!'
 # Start zsh
-zsh
+sudo chsh -s $(which zsh)
+echo "Setup complete - Restart terminal to refresh settings."
