@@ -211,12 +211,13 @@ setup_tools() {
   info "Installing packages..."
   declare -a packages=("curl" "wget" "vim" "build-essential" "cppcheck" "pylint" "yamllint"
                        "cmake" "unzip" "zsh" "fontconfig" "python3-dev" "x11-xkb-utils"
+                       "python3-pip"
                       )
 
   for package in "${packages[@]}"
   do
       if ! dpkg --status $package > /dev/null 2>&1 ; then
-          sudo apt install $package
+          sudo apt install -y $package
           echo "$package installed"
       else
           success "Already installed $package"
@@ -253,7 +254,7 @@ setup_zsh() {
 
     success_file="ohmyzsh_success.txt"
     if [ ! -f $success_file ]; then
-        ~/.dotfiles/ohmyzsh-install.sh
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         if [ $? -eq 0 ]; then
             echo "successful install" >> $success_file
             success "OhMyZsh installed"
@@ -265,6 +266,16 @@ setup_zsh() {
     fi
 }
 
+setup_aws_cli() {
+    info "Installing AWS CLI"
+    cd /tmp
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &> /dev/null
+    unzip -qq -o awscliv2.zip
+    sudo ./aws/install --update
+    #rm -rf /tmp/awscliv2.zip /tmp/aws
+    pip3 install -U cfn-lint
+}
+
 success 'Installation Started'
 setup_tools
 setup_gitconfig
@@ -272,6 +283,7 @@ setup_vim
 setup_zsh
 install_dotfiles
 setup_vim_ide
+setup_aws_cli
 
 echo ''
 echo '  All installed!'
