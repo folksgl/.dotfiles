@@ -64,9 +64,17 @@ let g:syntastic_cpp_compiler = "g++"
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_checkers = ['cppcheck']
-let g:syntastic_cppcheck_config_file = "compile_commands.json"
+let g:syntastic_cpp_cppcheck_args="--enable=all"
+let g:syntastic_cloudformation_checkers = ['cfn_lint']
 
+let g:syntastic_ptyhon_checkers = ['pylint']
+let g:syntastic_ptyhon_pylint_post_args="--max-line-length=200"
 
+let g:syntastic_yaml_checkers = ['yamllint']
+
+" Filetype settings
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Key bindings
 nmap <CR> o<Esc>
