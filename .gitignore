@@ -1,2 +1,3 @@
 gitconfig.local.symlink
 *.swp
+*success.txt
