@@ -204,6 +204,9 @@ setup_vim_ide() {
         fi
     fi
 
+    mkdir -p $HOME/.config/yamllint/
+    echo -e "extends: default\nrules:\n  line-length: disable"
+
 }
 
 setup_tools() {
