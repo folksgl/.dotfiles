@@ -66,7 +66,8 @@ let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_cpp_cppcheck_args="--enable=all"
 let g:syntastic_cloudformation_checkers = ['cfn-lint']
 
-let g:syntastic_ptyhon_checkers = ['pylint']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_pylint_post_args="--max-line-length=200"
 
 let g:syntastic_yaml_checkers = ['yamllint', 'cfn-lint']
 
