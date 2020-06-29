@@ -33,15 +33,14 @@ set scrolloff=2
 " Vim-Plug and plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdcommenter'
-Plug 'yggdroot/indentline'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'sickill/vim-pasta'
-Plug 'edkolev/tmuxline.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'valloric/youcompleteme'
+Plug 'scrooloose/syntastic'            " Syntastic syntax checker
+Plug 'scrooloose/nerdcommenter'        " Easy commenting of single/multi line sections
+Plug 'yggdroot/indentline'             " Display indent level with vertical lines
+Plug 'vim-airline/vim-airline'         " Improved status bar and tracking
+Plug 'vim-airline/vim-airline-themes'  " Theme support for status bar
+Plug 'edkolev/tmuxline.vim'            " TMUX status line generator
+Plug 'valloric/youcompleteme'          " Code completion engine support
+Plug 'speshak/vim-cfn'                 " Cfn-lint support/highlighting for syntastic
 
 call plug#end()
 
@@ -65,12 +64,11 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_cpp_cppcheck_args="--enable=all"
-let g:syntastic_cloudformation_checkers = ['cfn_lint']
+let g:syntastic_cloudformation_checkers = ['cfn-lint']
 
 let g:syntastic_ptyhon_checkers = ['pylint']
-let g:syntastic_ptyhon_pylint_post_args="--max-line-length=200"
 
-let g:syntastic_yaml_checkers = ['yamllint']
+let g:syntastic_yaml_checkers = ['yamllint', 'cfn-lint']
 
 " Filetype settings
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
