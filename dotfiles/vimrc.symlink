@@ -55,21 +55,27 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" Recommended settings by syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_compiler = "g++"
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_checkers = ['cppcheck']
-let g:syntastic_cpp_cppcheck_args="--enable=all"
-let g:syntastic_cloudformation_checkers = ['cfn-lint']
 
+" C++ syntastic settings
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_checkers = ['cppcheck', 'cpplint', 'clang-check']
+let g:syntastic_cpp_cppcheck_args="--enable=all"
+let g:syntastic_cpp_cpplint_exec = "cpplint"
+let g:syntastic_cpp_cpplint_args = "--verbose=2 --linelength=150 --filter=-legal/copyright"
+
+" other syntastic settings
+let g:syntastic_cloudformation_checkers = ['cfn-lint']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_post_args="--max-line-length=200"
-
 let g:syntastic_yaml_checkers = ['yamllint', 'cfn-lint']
+
+let g:ycm_show_diagnostics_ui = 0
 
 " Filetype settings
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
