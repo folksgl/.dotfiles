@@ -32,3 +32,4 @@ alias mcmr='make clean && make && make run'
 alias python='python3'
 alias pip='pip3'
 
+alias update='sudo apt update -y && sudo apt upgrade -y'
