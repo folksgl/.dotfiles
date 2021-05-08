@@ -16,6 +16,8 @@ source ~/.dotfiles/shell_aliases
 # Add dotfiles bin to PATH environment variable
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export GPG_TTY=$(tty)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
