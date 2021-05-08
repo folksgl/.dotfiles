@@ -13,13 +13,6 @@ DOTFILES_ROOT=$(pwd -P)
 # is being inve
 set -e
 
-if [ $# -eq 1 ] && [ $1 = "-y" ]
-then
-    my_git_authorname="Garrett F."
-    my_git_email="Gfolks14@gmail.com"
-fi
-
-
 echo ''
 
 info () {
@@ -51,20 +44,8 @@ setup_gitconfig () {
           git_credential='osxkeychain'
       fi
 
-      if [ ! -z "$my_git_authorname" ]
-      then 
-          git_authorname=$my_git_authorname
-      else
-          user ' - What is your github author name?'
-          read -e git_authorname
-      fi
-      if [ ! -z "$my_git_email" ]
-      then 
-          git_authoremail=$my_git_email
-      else
-          user ' - What is your github author email?'
-          read -e git_authoremail
-      fi
+      git_authorname="folksgl"
+      git_authoremail="Gfolks14@gmail.com"
 
       sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" ~/.dotfiles/dotfiles/gitconfig.local.symlink.example > ~/.dotfiles/dotfiles/gitconfig.local.symlink
 
