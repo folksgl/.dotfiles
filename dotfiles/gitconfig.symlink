@@ -27,3 +27,7 @@
         default = simple
 [pager]
 	branch = false
+[user]
+	signingkey = A1CB0EA68FD0D4C2
+[commit]
+	gpgsign = true
