@@ -170,7 +170,7 @@ setup_vim_ide() {
         cd $COMPLETION_DIR
         success_file="success.txt"
         if [ ! -f $success_file ]; then
-            python3 install.py --clangd-completer
+            python3 install.py --clangd-completer --rust-completer
             if [ $? -eq 0 ]; then
                 echo "successful install" >> $success_file
                 success "Completion engines installed"
@@ -206,6 +206,10 @@ setup_tools() {
   done
 
   success "Packages installed"
+}
+
+install_rust() {
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 setup_zsh() {
@@ -259,6 +263,7 @@ setup_aws_cli() {
 
 success 'Installation Started'
 setup_tools
+install_rust
 setup_gitconfig
 setup_vim
 setup_zsh
