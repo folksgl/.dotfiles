@@ -149,10 +149,7 @@ setup_vim () {
   COLORS_DIR=~/.vim/colors/
   THEME=~/.dotfiles/vim_themes/spring-night.vim
 
-  if [ ! -d "$COLORS_DIR" ]
-  then
-      mkdir -p $COLORS_DIR
-  fi
+  mkdir -p $COLORS_DIR
   cp $THEME $COLORS_DIR
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
