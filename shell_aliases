@@ -29,8 +29,8 @@ alias mc='make clean'
 alias mcm='make clean && make'
 alias mcmr='make clean && make && make run'
 
-alias python='python3'
-alias pip='pip3'
+alias python='python3.9'
+alias pip='python -m pip'
 alias update='sudo apt update -y && sudo apt upgrade -y'
 
 alias activate='source ./.venv/bin/activate'
