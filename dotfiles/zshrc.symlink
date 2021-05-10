@@ -78,7 +78,6 @@ plugins=(
   rustup
   cargo
   nmap
-  pip
   jira
   zsh_reload
 )
