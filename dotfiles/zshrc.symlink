@@ -79,7 +79,6 @@ plugins=(
   cargo
   nmap
   jira
-  zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh
