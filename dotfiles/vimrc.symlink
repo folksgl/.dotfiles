@@ -71,6 +71,9 @@ let g:syntastic_cpp_cppcheck_args="--enable=all"
 let g:syntastic_cpp_cpplint_exec = "cpplint"
 let g:syntastic_cpp_cpplint_args = "--verbose=2 --linelength=150 --filter=-legal/copyright"
 
+" Go syntastic settings
+let g:syntastic_go_checkers = ['go', 'gofmt', 'govet', 'golint']
+
 " other syntastic settings
 let g:syntastic_cloudformation_checkers = ['cfn-lint']
 let g:syntastic_python_checkers = ['pylint']
