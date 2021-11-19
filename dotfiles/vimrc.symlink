@@ -30,6 +30,9 @@ set scrolloff=2
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "match OverLength /\%81v.\+/
 
+" Disable the markdown plugin BEFORE loading the polyglot plugin
+let g:polyglot_disabled = ['markdown']
+
 " Vim-Plug and plugins
 call plug#begin('~/.vim/plugged')
 
@@ -43,6 +46,8 @@ Plug 'valloric/youcompleteme'            " Code completion engine support
 Plug 'speshak/vim-cfn'                   " Cfn-lint support/highlighting for syntastic
 Plug 'psf/black', { 'branch': 'stable' } " Black Python linter
 Plug 'rust-lang/rust.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -72,11 +77,17 @@ let g:syntastic_cpp_cpplint_exec = "cpplint"
 let g:syntastic_cpp_cpplint_args = "--verbose=2 --linelength=150 --filter=-legal/copyright"
 
 " Go syntastic settings
-let g:syntastic_go_checkers = ['go', 'gofmt', 'govet', 'golint']
+let g:syntastic_go_checkers = ['go', 'gofmt', 'govet']
+let g:go_metalinter_command = 'golangci-lint'
+let g:go_list_type = ""
+let g:go_metalinter_autosave = 1
+
+"let g:syntastic_go_golangci_lint_args = "--
+let g:go_fmt_fail_silently = 1
 
 " other syntastic settings
 let g:syntastic_cloudformation_checkers = ['cfn-lint']
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['pylint', "python"]
 let g:syntastic_python_pylint_post_args="--max-line-length=200"
 let g:syntastic_yaml_checkers = ['yamllint', 'cfn-lint']
 
