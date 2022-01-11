@@ -80,8 +80,6 @@ plugins=(
   git
   aws
   rust
-  rustup
-  cargo
   nmap
   jira
 )
