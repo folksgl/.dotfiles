@@ -21,6 +21,7 @@ alias greph='history | grep'
 alias diff='diff -u'
 alias gits='git status'
 alias gitb='git branch --verbose'
+alias gitr='git remote --verbose'
 alias gp='git pull'
 
 num_procs=$(grep -c processor < /proc/cpuinfo)
