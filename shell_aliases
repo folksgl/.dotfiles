@@ -23,7 +23,7 @@ alias gits='git status'
 alias gitb='git branch --verbose'
 alias gp='git pull'
 
-num_procs=$(cat /proc/cpuinfo | grep processor | wc -l)
+num_procs=$(grep -c processor < /proc/cpuinfo)
 alias make="make -j$num_procs"
 alias mc='make clean'
 alias mcm='make clean && make'
