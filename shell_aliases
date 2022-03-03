@@ -18,6 +18,7 @@ alias bootstrap='vi ~/.dotfiles/bootstrap.sh'
 alias c=clear
 alias vi='vim'
 alias greph='history | grep'
+alias grepr='grep -r'
 alias diff='diff -u'
 alias gits='git status'
 alias gitb='git branch --verbose'
