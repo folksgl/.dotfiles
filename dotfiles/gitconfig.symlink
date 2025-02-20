@@ -25,11 +25,14 @@
         #
         # Setting to git 2.0 default to suppress warning message
         default = simple
+        autoSetupRemote = true
 [pager]
 	branch = false
   tag = false
 [user]
-	signingkey = A1CB0EA68FD0D4C2
+	signingkey = 70D40629D69B4D21
+	email = Gfolks14@gmail.com
+	name = Garrett Folks
 [commit]
 	gpgsign = true
 [tag]

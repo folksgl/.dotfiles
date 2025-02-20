@@ -152,45 +152,13 @@ setup_vim () {
   mkdir -p $COLORS_DIR
   cp $THEME $COLORS_DIR
 
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
-  
-  vim +PlugInstall +PlugUpdate +qall
-
   success 'Vim customization complete'
-}
-
-setup_vim_ide() {
-    info "Setting up completion engines..."
-
-    COMPLETION_DIR=~/.vim/plugged/youcompleteme/
-
-    if [ -d "$COMPLETION_DIR" ]
-    then
-        cd $COMPLETION_DIR
-        success_file="success.txt"
-        if [ ! -f $success_file ]; then
-            python3 install.py --clangd-completer --rust-completer
-            if [ $? -eq 0 ]; then
-                echo "successful install" >> $success_file
-                success "Completion engines installed"
-            else
-                fail "Completion engine installer failed"
-            fi
-        else
-            success "Completion engines already installed"
-        fi
-    fi
-
-    mkdir -p $HOME/.config/yamllint/
-    echo -e "extends: default\nrules:\n  line-length: disable"
-
 }
 
 setup_tools() {
   # Install tools
   info "Installing packages..."
-  declare -a packages=("curl" "wget" "vim" "build-essential" "cppcheck" "yamllint"
+  declare -a packages=("curl" "wget" "vim" "build-essential" "cppcheck"
                        "cmake" "unzip" "zsh" "fontconfig" "python3-dev" "x11-xkb-utils"
                        "python3-pip"
                       )
@@ -206,10 +174,6 @@ setup_tools() {
   done
 
   success "Packages installed"
-}
-
-install_rust() {
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 setup_zsh() {
@@ -251,25 +215,10 @@ setup_zsh() {
     fi
 }
 
-setup_aws_cli() {
-    info "Installing AWS CLI"
-    cd /tmp
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &> /dev/null
-    unzip -qq -o awscliv2.zip
-    sudo ./aws/install --update
-    #rm -rf /tmp/awscliv2.zip /tmp/aws
-    pip3 install -U cfn-lint
-}
-
 success 'Installation Started'
-setup_tools
-install_rust
-setup_gitconfig
 setup_vim
 setup_zsh
 install_dotfiles
-setup_vim_ide
-setup_aws_cli
 
 echo ''
 echo '  All installed!'
